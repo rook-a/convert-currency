@@ -5,7 +5,7 @@ import { AppDispatch, State } from '../../types/state';
 import { Symbols } from '../../types/symbols';
 import { APIRoute, FetchStatus, NameSpace } from '../../utils/const';
 
-const API_KEY = '090970ff6cmsh7526fc23e58f059p18ba90jsnae9a07436c3d';
+const API_KEY = process.env.REACT_APP_CURRENCY_API_KEY!;
 
 const HEADERS = {
   headers: {
