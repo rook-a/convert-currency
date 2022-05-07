@@ -1,16 +1,25 @@
-import { CssBaseline } from '@mui/material';
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import App from './components/app/app';
+import { CssBaseline } from '@mui/material';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+import App from './components/app/app';
+import HistoryRoute from './components/history-route/history-route';
+
+import reportWebVitals from './reportWebVitals';
+import { browserHistory } from './browser-history';
+import { store } from './store/store';
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
   <React.StrictMode>
-    <CssBaseline />
-    <App />
+    <Provider store={store}>
+      <HistoryRoute history={browserHistory}>
+        <CssBaseline />
+        <App />
+      </HistoryRoute>
+    </Provider>
   </React.StrictMode>,
 );
 
