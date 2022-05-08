@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { CssBaseline } from '@mui/material';
 
-import App from './components/app/app';
+import App from './components/app/App';
 import HistoryRoute from './components/history-route/history-route';
 
 import reportWebVitals from './reportWebVitals';
