@@ -11,7 +11,7 @@ interface BoxOutputProps {
   currentCurrentcy: InitialState;
   onSelectToCurrencyChange: (evt: SelectChangeEvent) => void;
   onInputToCurrencyChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  amount: number;
+  amount: number | string;
 }
 
 const ITEM_HEIGHT = 48;
@@ -41,8 +41,8 @@ function OutputDataTo({
       <Paper>
         <FormControl sx={{ width: '100%', mb: 5 }}>
           <Select
-            value={currentCurrentcy.toCurrency || ''}
             onChange={onSelectToCurrencyChange}
+            value={currentCurrentcy.toCurrency}
             MenuProps={menuProps}
             sx={{
               '& .MuiSelect-icon': { transform: 'rotate(90deg)' },
@@ -59,7 +59,7 @@ function OutputDataTo({
 
         <Input
           onChange={onInputToCurrencyChange}
-          value={amount || ''}
+          value={amount}
           id="amount-to"
           name="amount-to"
           type="number"

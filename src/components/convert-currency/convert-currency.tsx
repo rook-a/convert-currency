@@ -7,23 +7,17 @@ import ChangeButton from '../change-button/change-button';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { fetchCurrency, fetchSymbols, selectCurrencyRates } from '../../store/currency-slice/currency-slice';
+import { InitialState } from '../../types/initial-state';
 
 function ConvertCurrency() {
   const dispatch = useAppDispatch();
   const selectRates = useAppSelector(selectCurrencyRates);
-  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
-  const [convertValue, setConvertValue] = useState({
+  const [convertValue, setConvertValue] = useState<InitialState>({
     fromCurrency: 'USD',
-    fromAmount: 1,
+    fromAmount: '',
     toCurrency: 'RUB',
-    toAmount: 0,
+    toAmount: '',
   });
-
-  if (amountInFromCurrency) {
-    convertValue.toAmount = convertValue.fromAmount * Number(selectRates[convertValue.toCurrency]);
-  } else {
-    convertValue.fromAmount = convertValue.toAmount / Number(selectRates[convertValue.toCurrency]);
-  }
 
   useEffect(() => {
     dispatch(fetchCurrency({ base: 'USD' }));
@@ -58,8 +52,8 @@ function ConvertCurrency() {
     setConvertValue((prevState) => ({
       ...prevState,
       fromAmount: Number(value),
+      toAmount: Number(value) * Number(selectRates[convertValue.toCurrency]),
     }));
-    setAmountInFromCurrency(true);
   };
 
   const handleInputToCurrencyChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +62,8 @@ function ConvertCurrency() {
     setConvertValue((prevState) => ({
       ...prevState,
       toAmount: Number(value),
+      fromAmount: Number(value) / Number(selectRates[convertValue.toCurrency]),
     }));
-    setAmountInFromCurrency(false);
   };
 
   return (

@@ -1,6 +1,6 @@
 export interface InitialState {
   fromCurrency: string;
-  fromAmount: number;
+  fromAmount: number | string;
   toCurrency: string;
-  toAmount: number;
+  toAmount: number | string;
 }
