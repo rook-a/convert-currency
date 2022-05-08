@@ -1,4 +1,11 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Button, Icon } from '@mui/material';
+import { InitialState } from '../../types/initial-state';
+
+interface ChangeButtonProps {
+  currentCurrentcy: InitialState;
+  onChangeState: Dispatch<SetStateAction<InitialState>>;
+}
 
 const arrowsIcon = (
   <Icon>
@@ -6,9 +13,20 @@ const arrowsIcon = (
   </Icon>
 );
 
-function ChangeButton() {
+function ChangeButton({ currentCurrentcy, onChangeState }: ChangeButtonProps): JSX.Element {
+  const handleClick = () => {
+    onChangeState((prevState) => ({
+      ...prevState,
+      fromCurrency: currentCurrentcy.toCurrency,
+      fromAmount: currentCurrentcy.toAmount,
+      toCurrency: currentCurrentcy.fromCurrency,
+      toAmount: currentCurrentcy.fromAmount,
+    }));
+  };
+
   return (
     <Button
+      onClick={handleClick}
       startIcon={arrowsIcon}
       sx={{
         height: '70px',

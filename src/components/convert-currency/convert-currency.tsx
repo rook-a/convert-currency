@@ -88,7 +88,7 @@ function ConvertCurrency() {
           amount={convertValue.fromAmount}
         />
 
-        <ChangeButton />
+        <ChangeButton currentCurrentcy={convertValue} onChangeState={setConvertValue} />
 
         <OutputDataTo
           currentCurrentcy={convertValue}
