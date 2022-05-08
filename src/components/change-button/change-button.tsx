@@ -2,7 +2,7 @@ import { Button, Icon } from '@mui/material';
 
 const arrowsIcon = (
   <Icon>
-    <img src="arrows.svg" alt="arrows icon" />
+    <img src="arrows.svg" width={68} height={56} alt="arrows-icon" />
   </Icon>
 );
 
