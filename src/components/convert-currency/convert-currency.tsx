@@ -30,6 +30,8 @@ function ConvertCurrency() {
     setConvertValue((prevState) => ({
       ...prevState,
       fromCurrency: value,
+
+      toAmount: Number(convertValue.fromAmount) * Number(selectRates[value]),
     }));
 
     dispatch(fetchCurrency({ base: value }));
@@ -41,6 +43,7 @@ function ConvertCurrency() {
     setConvertValue((prevState) => ({
       ...prevState,
       toCurrency: value,
+      fromAmount: Number(convertValue.toAmount) / Number(selectRates[value]),
     }));
 
     dispatch(fetchCurrency({ base: value }));
